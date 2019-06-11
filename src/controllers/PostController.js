@@ -8,8 +8,6 @@ module.exports = {
 
     async store(req, res) {
 
-        console.log(req.body);
-        return res.json({ ok: true, req: req.body});
         // utilizando desestruturação ES6
         const { author, place, description, hashtags } = req.body;
         const { filename: image } = req.file;
