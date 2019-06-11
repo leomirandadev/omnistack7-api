@@ -4,6 +4,10 @@ module.exports = {
     
     async index(req, res) {
 
+        // "-createdAt" serve para ordenar a pesquisa pela data de criação na ordem decrescente
+        const posts = await Post.find().sort("-createdAt");
+
+        return res.json( posts );
     },
 
     async store(req, res) {
