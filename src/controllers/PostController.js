@@ -19,11 +19,14 @@ module.exports = {
         const { author, place, description, hashtags } = req.body;
         const { filename: image } = req.file;
 
+        const [name] = image.split('.');
+        newImageFormated = name + ".jpg";
+
         await sharp(req.file.path)
         .resize(500) // redimenciona para deixar no máximo com 500px de width ou height
         .jpeg({ quality: 70 }) // seta a qualidade como 70%
         .toFile(
-            path.resolve(req.file.destination, "resized", image) // coloca o novo arquivo na pasta de resized
+            path.resolve(req.file.destination, "resized", newImageFormated) // coloca o novo arquivo na pasta de resized
         )
         // deleta a imagem no caminho inicial
         fs.unlinkSync( req.file.path );
@@ -34,7 +37,7 @@ module.exports = {
             place,
             description,
             hashtags,
-            image
+            newImageFormated
         });
 
         return res.json({ ok: true, result: post});
