@@ -40,6 +40,9 @@ module.exports = {
             newImageFormated
         });
 
+        // avisa o websocket que houve uma alteração no banco
+        req.io.emit("post", post);
+
         return res.json({ ok: true, result: post});
     }
 

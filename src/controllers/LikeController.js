@@ -10,6 +10,9 @@ module.exports = {
         post.likes ++;
         // salva a alteração do objeto no mongo
         await post.save();
+        
+        // avisa o websocket que houve uma alteração no banco
+        req.io.emit("like", post);
 
         return res.json(post);
     }
