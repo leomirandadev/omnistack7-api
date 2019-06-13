@@ -37,7 +37,7 @@ module.exports = {
             place,
             description,
             hashtags,
-            newImageFormated
+            image : newImageFormated
         });
 
         // avisa o websocket que houve uma alteração no banco
